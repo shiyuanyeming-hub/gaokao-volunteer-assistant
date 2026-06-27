@@ -1,65 +1,153 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { MessageCircle, BarChart3, Swords, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { XuefengAvatar } from "@/components/shared/XuefengAvatar";
+import { CurrentInfoPanel } from "@/components/shared/CurrentInfoPanel";
+import { motion } from "framer-motion";
+
+const modes = [
+  {
+    href: "/chat",
+    icon: MessageCircle,
+    title: "聊天模式",
+    desc: "来找张老师聊聊高考、志愿、专业、就业。三种人格模式可选——他会反问、会举例、会拆幻想，最后一定给你实在建议。",
+    color: "bg-sprite",
+    active: true,
+  },
+  {
+    href: "/analysis",
+    icon: BarChart3,
+    title: "志愿分析",
+    desc: "省份、分数、选科、目标——填好之后张老师给你做志愿分析。情况分析→风险评估→志愿建议→锐评，一步到位。",
+    color: "bg-ice",
+    active: true,
+  },
+  {
+    href: "/challenge",
+    icon: Swords,
+    title: "攻略雪车头",
+    desc: "10关闯关！分数低直接笑，专科笑，文科生笑，艺术生美术生也笑。选什么都被嘲笑，但每次嘲笑都带一点真实志愿提醒。",
+    color: "bg-choco",
+    active: true,
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 200, damping: 25 },
+  },
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-[calc(100vh-8rem)] flex flex-col">
+      {/* Hero Section */}
+      <motion.section
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col items-center justify-center px-4 py-16 text-center"
+      >
+        <XuefengAvatar mood="normal" size="lg" className="mb-6" />
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-3">
+          <span className="text-white">雪碧</span>
+          <span className="text-sprite-bright">志愿填报</span>
+          <span className="text-white">助手</span>
+        </h1>
+        <p className="text-lg sm:text-xl text-white/60 max-w-lg mb-2">
+          一个真正懂张老师的 AI 志愿助手
+        </p>
+        <p className="text-sm text-xf-yellow font-medium mb-8">
+          不是套了个皮肤的普通 AI —— 它会反问、会拆你的幻想，最后一定给你出路
+        </p>
+        <div className="flex gap-3 flex-wrap justify-center">
+          <Link href="/chat">
+            <Button
+              size="lg"
+              className="rb-glow-button bg-sprite hover:bg-sprite-bright text-white font-bold px-8 gap-2 text-base"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <MessageCircle className="size-5" />
+              进入直播间
+            </Button>
+          </Link>
+          <Link href="/analysis">
+            <Button
+              size="lg"
+              variant="outline"
+              className="rb-outline-button border-ice/60 text-ice-bright hover:bg-ice/10 font-bold px-8 gap-2 text-base"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <BarChart3 className="size-5" />
+              志愿分析
+            </Button>
+          </Link>
+          <Link href="/challenge">
+            <Button
+              size="lg"
+              variant="outline"
+              className="rb-outline-button border-sprite/60 text-sprite-bright hover:bg-sprite/10 font-bold px-8 gap-2 text-base"
+            >
+              <Swords className="size-5" />
+              攻略雪车头
+            </Button>
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </motion.section>
+
+      {/* Mode Cards */}
+      <motion.section
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="mx-auto w-full max-w-5xl px-4 pb-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {modes.map((mode) => (
+          <motion.div key={mode.href} variants={itemVariants}>
+            <Link href={mode.active ? mode.href : "#"} className="block h-full group">
+              <Card className="h-full bg-xf-card border-white/10 hover:border-sprite/50 transition-all duration-300 group-hover:-translate-y-1">
+                <CardHeader>
+                  <div
+                    className={`inline-flex size-12 items-center justify-center rounded-xl ${mode.color} mb-3`}
+                  >
+                    <mode.icon className="size-6 text-white" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CardTitle className="text-white text-lg">{mode.title}</CardTitle>
+                    {!mode.active && (
+                      <span className="text-xs bg-white/10 text-white/50 px-2 py-0.5 rounded">
+                        即将开放
+                      </span>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-white/50 leading-relaxed">{mode.desc}</p>
+                  <div className="rb-link-button mt-4 flex w-fit items-center gap-1 text-sm text-xf-red-bright font-medium group-hover:gap-2 transition-all">
+                    进入模式 <ArrowRight className="size-4" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </motion.div>
+        ))}
+      </motion.section>
+
+      <section className="mx-auto w-full max-w-5xl px-4 pb-20">
+        <CurrentInfoPanel compact />
+      </section>
     </div>
   );
 }
