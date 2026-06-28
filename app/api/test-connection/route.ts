@@ -3,7 +3,7 @@
 // 始终返回 200 + { ok, ... }，由前端按 ok 字段判断（避免 fetch 层报错吞掉原因）。
 
 import { NextRequest } from "next/server";
-import { getAdvisor } from "@/lib/advisors/factory";
+import { getAdvisor, getCurrentProvider } from "@/lib/advisors/factory";
 import { extractApiError } from "@/lib/advisors/stream-utils";
 import type { ClientApiSettings } from "@/lib/api-settings";
 import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit";
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       apiConfig?: Partial<ClientApiSettings>;
     };
 
-    const provider = apiConfig?.provider || "deepseek";
+    const provider = apiConfig?.provider || getCurrentProvider();
     const advisor = getAdvisor(provider, apiConfig);
 
     // 发一个极小请求，只要能拿到回包就说明 key + baseURL + provider 都对
