@@ -4,9 +4,11 @@
 
 ## 在线访问
 
-[打开网站：雪碧志愿填报助手](https://gaokao-volunteer-assistant-coral.vercel.app/)
+[国内优先：EdgeOne 访问](https://gaokao-volunteer-assistant-dpo4628cv2hu.edgeone.dev/)
 
-如果只是想让别人看到网站，直接把上面的链接发给对方就可以。GitHub 仓库负责展示代码，Vercel 链接才是可直接打开使用的网站。
+[海外备用：Vercel 访问](https://gaokao-volunteer-assistant-coral.vercel.app/)
+
+如果只是想让别人看到网站，直接把 EdgeOne 链接发给对方就可以。GitHub 仓库负责展示代码，EdgeOne / Vercel 链接才是可直接打开使用的网站。
 
 ## 在线能力
 
