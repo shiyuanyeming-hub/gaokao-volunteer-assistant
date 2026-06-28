@@ -8,7 +8,7 @@ import { extractApiError } from "@/lib/advisors/stream-utils";
 import type { ClientApiSettings } from "@/lib/api-settings";
 import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {

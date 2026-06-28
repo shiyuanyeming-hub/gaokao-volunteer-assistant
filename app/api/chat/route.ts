@@ -5,7 +5,7 @@ import type { PersonaMode } from "@/lib/constants";
 import type { ClientApiSettings } from "@/lib/api-settings";
 import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,6 +1,6 @@
 import { getPublicServerApiStatus } from "@/lib/server-api";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function GET() {
   return Response.json(getPublicServerApiStatus(), {

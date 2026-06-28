@@ -7,7 +7,7 @@ import {
 import type { ClientApiSettings } from "@/lib/api-settings";
 import { extractAnalysisJson } from "@/lib/prompts/analysis-prompt";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {
