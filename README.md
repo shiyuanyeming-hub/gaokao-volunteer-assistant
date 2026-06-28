@@ -92,7 +92,11 @@ ALLOW_CLIENT_API_OVERRIDE=false
 PUBLIC_REQUESTS_PER_HOUR=60
 ```
 
+变量名必须完整填写成上面这种形式。不要只建一个叫 `deepseek`、`qwen` 或 `api_key` 的变量，代码不会读取这些名字。
+
 当服务端 Key 已配置时，页面右上角会显示「云端 API」，不会再暴露 API 设置入口。`PUBLIC_REQUESTS_PER_HOUR` 是轻量限流，防止公开链接被刷爆额度。
+
+如果在 Vercel 修改了 Environment Variables，需要重新部署一次 Production，线上网站才会读到新 Key。
 
 ## 安全边界
 
