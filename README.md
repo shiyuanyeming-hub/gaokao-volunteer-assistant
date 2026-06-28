@@ -4,7 +4,7 @@
 
 ## 在线访问
 
-[国内优先：EdgeOne 访问](https://gaokao-volunteer-assistant-dpo4628cv2hu.edgeone.dev/)
+[国内优先：EdgeOne 访问](https://gaokao-volunteer-assistant.edgeone.dev/)
 
 [海外备用：Vercel 访问](https://gaokao-volunteer-assistant-coral.vercel.app/)
 
