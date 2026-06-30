@@ -22,6 +22,7 @@
 人格和表达层参考：
 
 - [alchaincyf/zhangxuefeng-skill](https://github.com/alchaincyf/zhangxuefeng-skill)（MIT License）
+- [a18515373115-droid/ZhangXueFeng-skill](https://github.com/a18515373115-droid/ZhangXueFeng-skill)：2.0 版现实咨询协议、官方数据边界、情绪安全边界和普通家庭策略参考。
 
 2026 报考信息依据层参考：
 

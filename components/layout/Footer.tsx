@@ -15,7 +15,16 @@ export function Footer() {
           >
             zhangxuefeng-skill
           </a>
-          （MIT License） · 非官方产品 · 仅供娱乐与参考
+          （MIT License）与{" "}
+          <a
+            href="https://github.com/a18515373115-droid/ZhangXueFeng-skill"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-white/60"
+          >
+            ZhangXueFeng-skill 2.0
+          </a>
+          {" "}· 非官方产品 · 仅供娱乐与参考
         </p>
       </div>
     </footer>

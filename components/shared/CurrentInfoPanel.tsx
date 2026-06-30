@@ -65,7 +65,7 @@ export function CurrentInfoPanel({ compact = false, className }: CurrentInfoPane
             {CURRENT_GAOKAO_YEAR} 报考信息依据
           </h2>
           <p className="mt-1 text-xs leading-relaxed text-white/45">
-            风格和决策框架参考开源张雪峰 skill；事实判断优先回到阳光高考、省教育考试院、高校招生网和当年本科专业目录。
+            风格参考开源张雪峰 skill，决策边界吸收 2.0 版；事实判断优先回到阳光高考、省教育考试院、高校招生网和当年本科专业目录。
           </p>
         </div>
       </div>

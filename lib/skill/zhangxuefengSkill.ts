@@ -1,4 +1,6 @@
-// 张雪峰风格 skill 模块 — 基于 alchaincyf/zhangxuefeng-skill（MIT）
+// 张雪峰风格 skill 模块
+// - v1 风格层参考：alchaincyf/zhangxuefeng-skill（MIT）
+// - v2.0 决策边界参考：a18515373115-droid/ZhangXueFeng-skill
 // 三层结构：
 //   1) 决策逻辑（5 心智模型 + 8 启发式摘要）
 //   2) 表达风格（短句/反问/金句/东北味）
@@ -60,17 +62,23 @@ export interface GameRoastState {
 // ============ 安全边界（第 3 层） ============
 
 export const DISCLAIMER =
-  "以上为 AI 生成的风格化锐评与方向建议，仅供娱乐和参考，不替代各省教育考试院官方数据、院校招生章程、专业选科要求与正式志愿填报咨询。本工具不冒充任何个人。";
+  "以上为 AI 生成的风格化锐评与方向建议，仅供娱乐和参考，不替代阳光高考、各省教育考试院、院校招生章程、专业选科要求、就业质量报告与正式志愿填报咨询。本工具不冒充任何个人。";
 
 /** 禁用表述（输出前过滤） */
-const FORBIDDEN_PATTERNS: RegExp[] = [
-  /必[上录]/g, /百分百/g, /包上岸/g, /必就业/g, /稳录/g,
-  /绝对不能报/g, /一定考不上/g, /注定失败/g,
+const FORBIDDEN_PATTERNS: Array<[RegExp, string]> = [
+  [/必[上录]/g, "不能保证录取"],
+  [/百分百/g, "需要回到官方数据核验"],
+  [/包上岸/g, "不能保证上岸"],
+  [/必就业/g, "就业还得看城市、学校和个人能力"],
+  [/稳录/g, "相对更稳"],
+  [/绝对不能报/g, "高风险，不建议盲报"],
+  [/一定考不上/g, "录取风险很高"],
+  [/注定失败/g, "试错成本很高"],
 ];
 
 function sanitize(text: string): string {
   let out = text;
-  for (const re of FORBIDDEN_PATTERNS) out = out.replace(re, "大概率不");
+  for (const [re, replacement] of FORBIDDEN_PATTERNS) out = out.replace(re, replacement);
   return out;
 }
 
@@ -85,7 +93,7 @@ export const MENTAL_MODELS = [
   "争议即传播：把观点推到极端你才记得住——但记得区分「玩梗锐评」与「理性建议」。",
 ];
 
-/** 8 启发式（摘要） */
+/** 2.0 启发式（摘要） */
 export const HEURISTICS = [
   "灵魂追问法：分数？省份？家里做什么的？锁定范围再给判断。",
   "中位数原则：看中间 50% 的人去哪、拿多少、能不能养活自己。",
@@ -95,6 +103,9 @@ export const HEURISTICS = [
   "城市优先原则：城市决定你的格局、资源和机会。",
   "10 年后压迫测试：你能接受十年后混得不如当年分数比你低的人吗？",
   "认态度不认事实：核心观点不让步，只调整表达方式。",
+  "官方来源纪律：只把阳光高考、省考试院、高校招生章程和就业质量报告当硬依据。",
+  "退档调剂核验：冲稳保之前，先看专业组、选科、体检、语种、单科和调剂规则。",
+  "情绪安全刹车：用户出现自伤或绝望表达时，停止锐评，优先支持和求助。",
 ];
 
 // ============ 表达风格（第 2 层）短语库 ============
@@ -214,7 +225,7 @@ export function generateRationalAdvice(input: RoastInput): string {
   if (input.familyBudget === "low" && input.acceptMinban === false) {
     parts.push("预算有限又不接受民办/中外合作，城市和专业就得让步——优先省属公办 + 生源地周边。");
   }
-  parts.push("最重要的一步：去查目标院校当年的招生章程、专业选科要求、近三年录取位次，再下决定。");
+  parts.push("最重要的一步：去查目标院校当年的招生章程、专业选科要求、近三年录取位次、体检/语种/单科限制、调剂规则和学费，再下决定。");
 
   return parts.join(" ");
 }
